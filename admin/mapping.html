@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mapping - Child Nutrition System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
+  <link rel="stylesheet" href="css/mapping.css">
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <h2>Child NutriTrack</h2>
+  <a href="mainpage.html">🏠 Dashboard</a>
+  <a href="feeding.html">🍽️ Feeding Program</a>
+  <a href="assessment.html">🧾 Assessment</a>
+  <a href="scheduling.html">📅 Scheduling</a>
+  <a href="children.html">👶 Children</a>
+  <a href="parents.html">👨‍👩‍👧 Parents</a>
+  <a href="messages.html">💬 Messages</a>
+  <a class="active">📍 Mapping</a>
+  <a href="#" onclick="logout()" class="logout-btn">🚪 Logout</a>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <div class="topbar">
+    <h1>Barangay Mapping</h1>
+  </div>
+
+ <!-- SUMMARY CARDS -->
+<div class="summary-cards">
+
+  <div class="summary-card">
+    <h4>Total Children</h4>
+    <p id="totalChildren">0</p>
+  </div>
+
+  <div class="summary-card">
+    <h4>Normal</h4>
+    <p id="totalNormal">0</p>
+  </div>
+
+  <div class="summary-card">
+    <h4>Underweight</h4>
+    <p id="totalUnderweight">0</p>
+  </div>
+
+  <div class="summary-card">
+    <h4>Overweight</h4>
+    <p id="totalOverweight">0</p>
+  </div>
+
+  <div class="summary-card danger">
+    <h4>High Risk Schools</h4>
+    <p id="highRiskSchools">0</p>
+  </div>
+
+</div>
+
+  <div class="filter-box">
+  <div class="filter-item">
+    <label>School</label>
+    <select id="filterSchool">
+      <option value="All">All Schools</option>
+    </select>
+  </div>
+
+  <div class="filter-item">
+    <label>Grade</label>
+    <select id="filterGrade">
+      <option value="All">All Grades</option>
+    </select>
+  </div>
+
+  <div class="filter-item">
+    <label>Status</label>
+    <select id="filterStatus">
+      <option value="All">All Status</option>
+      <option value="Normal">Normal</option>
+      <option value="Underweight">Underweight</option>
+      <option value="Overweight">Overweight</option>
+    </select>
+  </div>
+
+  <div class="filter-item">
+    <label>Risk</label>
+    <select id="filterRisk">
+      <option value="All">All Risk</option>
+      <option value="Low">Low</option>
+      <option value="Medium">Medium</option>
+      <option value="High">High</option>
+    </select>
+  </div>
+
+  <button id="clearFilters">Clear</button>
+</div>
+
+  <!-- MAP -->
+  <div id="map"></div>
+
+  <!-- LEGEND -->
+<div class="legend" id="legendBox">
+  <h3>Map Guide</h3>
+
+  <div class="legend-section">
+    <h4>Student Markers</h4>
+
+    <p><span class="dot normal"></span> Normal Weight</p>
+    <p><span class="dot under"></span> Underweight (High Priority)</p>
+    <p><span class="dot over"></span> Overweight (Monitor)</p>
+  </div>
+
+  <div class="legend-divider"></div>
+
+  <div class="legend-section">
+    <h4>School Overlay</h4>
+
+    <p>⭕ Circle size = nutrition risk level</p>
+    <p>🏷 Percentage tag = school risk score</p>
+    <p>📊 Popup bar = nutrition breakdown</p>
+  </div>
+
+  <div class="legend-divider"></div>
+
+  <div class="legend-section">
+    <h4>Risk Level</h4>
+
+    <div class="risk-scale">
+      <div class="risk-bar"></div>
+      <div class="risk-labels">
+        <span>Low</span>
+        <span>Medium</span>
+        <span>High</span>
+      </div>
+    </div>
+
+    <p><span class="dot low"></span> Healthy</p>
+    <p><span class="dot medium"></span> Needs Monitoring</p>
+    <p><span class="dot high"></span> Needs Intervention</p>
+  </div>
+</div>
+
+
+<div class="trend-box">
+    <h3>Nutrition Trend Over Time</h3>
+
+    <div class="trend-top">
+        <select id="trendSchool">
+            <option value="All">All Schools</option>
+        </select>
+
+        <select id="trendView">
+            <option value="monthly">Monthly</option>
+            <option value="weekly">Weekly</option>
+        </select>
+    </div>
+
+    <canvas id="trendChart"></canvas>
+</div>
+
+  <!-- RISK RANKING -->
+  <div class="ranking-box" id="rankingBox">
+    <h3>Highest Risk Schools</h3>
+    <div id="riskList"></div>
+  </div>
+
+  <div id="studentCardContainer" class="student-card-container"></div>
+
+</div>
+
+<!-- Leaflet -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Your JS -->
+<script src="js/mapping.js"></script>
+</body>
+</html>

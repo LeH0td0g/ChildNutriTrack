@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Monitoring - Child Nutrition System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/monitoring.css">
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <h2>Child NutriTrack</h2>
+  <a href="mainpage.html">🏠 Dashboard</a>
+  <a class="active">📊 Monitoring</a>
+  <a href="feeding.html">🍽️ Feeding Program</a>
+  <a href="assessment.html">🧾 Assessment</a>
+  <a href="scheduling.html">📅 Scheduling</a>
+  <a href="children.html">👶 Children</a>
+  <a href="parents.html">👨‍👩‍👧 Parents</a>
+  <a href="messages.html">💬 Messages</a>
+  <a href="mapping.html">📍 Mapping</a>
+  <a href="#" onclick="logout()" class="logout-btn">🚪 Logout</a>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <div class="topbar">
+    <h1>Monitoring</h1>
+  </div>
+
+  <!-- FILTERS -->
+  <div class="filters">
+    <input type="text" id="search" placeholder="Search student..." onkeyup="filterTable()">
+
+    <select id="barangay" onchange="filterTable()">
+      <option value="">All School</option>
+      <option>Bangkal Elementary School</option>
+      <option>Bayan-Bayanan Elementary School</option>
+      <option>Colo Elementary School</option>
+      <option>Dalao Elementary School</option>
+      <option>Dinalupihan Elementary School</option>
+      <option>Happy Valley Elementary School</option>
+      <option>Kataasan Elementary School</option>
+      <option>Layac Elementary School</option>
+      <option>Luakan Elementary School</option>
+      <option>Magsaysay Elementary School</option>
+      <option>Maligaya Elementary School</option>
+      <option>Naparing Elementary School</option>
+      <option>New San Jose Elementary School</option>
+      <option>Old San Jose Elementary School</option>
+      <option>Pag-asa Elementary School</option>
+      <option>Paggalanggang Elementary School</option>
+      <option>Payangan Elementary School</option>
+      <option>Payumo Elementary School</option>
+      <option>Pinulot Elementary School</option>
+      <option>Pita Elementary School</option>
+      <option>Roosevelt Elementary School</option>
+      <option>Saguing Elementary School</option>
+      <option>San Benito Elementary School</option>
+      <option>San Pablo Elementary School</option>
+      <option>San Ramon Elementary School</option>
+      <option>Santo Niño Elementary School</option>
+      <option>Sta. Isabel Elementary School</option>
+      <option>Tucop Elementary School</option>
+      <option>Tubo-Tubo Elementary School</option>
+    </select>
+
+    <select id="grade" onchange="filterTable()">
+      <option value="">All Grades</option>
+      <option>Grade 1</option>
+      <option>Grade 2</option>
+      <option>Grade 3</option>
+      <option>Grade 4</option>
+      <option>Grade 5</option>
+      <option>Grade 6</option>
+    </select>
+  </div>
+
+  <!-- TABLE -->
+  <div class="table-container">
+    <table id="studentTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Barangay</th>
+          <th>Grade</th>
+          <th>Height (cm)</th>
+          <th>Weight (kg)</th>
+          <th>BMI</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Dynamic rows -->
+      </tbody>
+    </table>
+
+    <p id="emptyState" style="display:none; text-align:center; margin-top:10px;">
+      No records found
+    </p>
+  </div>
+
+</div>
+
+<!-- TREND MODAL -->
+<div id="trendModal" class="edit-card">
+  <div class="card-content" style="width:500px;">
+    <h3 id="trendTitle">BMI Trend</h3>
+
+    <canvas id="trendChart" height="200"></canvas>
+
+    <div class="card-buttons">
+      <button onclick="closeTrend()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- CHART.JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- YOUR JS -->
+<script src="js/monitoring.js"></script>
+
+</body>
+</html>

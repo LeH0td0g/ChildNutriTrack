@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Parent Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/usermain.css">
+</head>
+
+<body>
+
+<!-- SIDEBAR (UNCHANGED) -->
+<div class="sidebar">
+  <h2>Child NutriTrack</h2>
+
+  <a class="active">🏠 Dashboard</a>
+  <a href="#">👶 My Child</a>
+  <a href="#">📅 Schedule</a>
+  <a href="#">💬 Messages</a>
+
+  <a href="javascript:void(0)" onclick="logout(event)" class="logout-btn">🚪 Logout</a>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <div class="dashboard-grid">
+
+    <!-- LEFT -->
+    <div class="left-panel">
+
+      <div class="card">
+        <h3>Child Information</h3>
+        <p id="childName"></p>
+        <p id="childAge"></p>
+        <p id="childBarangay"></p>
+      </div>
+
+      <div class="card">
+        <h3>Nutrition Status</h3>
+        <p id="childStatus" class="status">No data</p>
+      </div>
+
+    </div>
+
+    <!-- RIGHT -->
+    <div class="right-panel">
+
+      <div class="card">
+        <h3>👨‍👩‍👧 My Children</h3>
+        <div id="childSwitcher"></div>
+      </div>
+
+      <div class="card notification-card">
+        <h3>🔔 Notifications</h3>
+
+        <button onclick="showAlert()" class="notif-btn">
+          View Alerts
+          <span id="alertBadge" class="badge hidden"></span>
+        </button>
+
+      </div>
+
+      <div class="card">
+        <h3>📅 Upcoming Schedule</h3>
+        <ul id="scheduleList"></ul>
+      </div>
+
+      <div class="card quick-actions">
+        <h3>Quick Actions</h3>
+
+        <button onclick="goTo('messages.html')">💬 Messages</button>
+        <button onclick="goTo('monitoring.html')">📊 Records</button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script src="js/usermain.js"></script>
+<script src="js/notifications.js"></script>
+
+</body>
+</html>

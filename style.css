@@ -1,0 +1,142 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#e8f5e9,#d7f3ec);
+}
+
+/* ==========================
+   LOGIN CONTAINER
+========================== */
+
+.container{
+    width:430px;
+    background:#fff;
+    border-radius:20px;
+    padding:45px 40px;
+    box-shadow:0 15px 40px rgba(0,0,0,.12);
+}
+
+/* ==========================
+   LOGIN FORM
+========================== */
+
+form{
+    display:flex;
+    flex-direction:column;
+}
+
+h1{
+    text-align:center;
+    color:#1b5e20;
+    margin-bottom:10px;
+    font-size:32px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#666;
+    margin-bottom:35px;
+    font-size:15px;
+}
+
+/* ==========================
+   LABELS
+========================== */
+
+label{
+    font-size:14px;
+    font-weight:600;
+    color:#333;
+    margin-bottom:8px;
+    margin-top:15px;
+}
+
+/* ==========================
+   INPUTS
+========================== */
+
+input{
+    width:100%;
+    padding:14px 16px;
+    border:1px solid #d6d6d6;
+    border-radius:10px;
+    background:#f8f9fb;
+    font-size:15px;
+    transition:.25s;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+input:focus{
+    outline:none;
+    border-color:#2e7d32;
+    background:#fff;
+    box-shadow:0 0 0 3px rgba(46,125,50,.15);
+}
+
+/* ==========================
+   LOGIN BUTTON
+========================== */
+
+button{
+    margin-top:30px;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    background:#2e7d32;
+    color:#fff;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#1b5e20;
+    transform:translateY(-2px);
+}
+
+/* ==========================
+   LINKS
+========================== */
+
+.forgot-password{
+    text-align:right;
+    margin-top:10px;
+}
+
+.forgot-password a{
+    color:#2e7d32;
+    text-decoration:none;
+    font-size:14px;
+}
+
+.forgot-password a:hover{
+    text-decoration:underline;
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:500px){
+
+    .container{
+        width:90%;
+        padding:35px 25px;
+    }
+
+    h1{
+        font-size:28px;
+    }
+
+}

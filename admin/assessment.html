@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nutrition Assessment</title>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <h2>Child NutriTrack</h2>
+
+    <a href="mainpage.html">🏠 Dashboard</a>
+    <a href="feeding.html">🍽️ Feeding Program</a>
+    <a class="active">🧾 Assessment</a>
+    <a href="scheduling.html">📅 Scheduling</a>
+    <a href="children.html">👶 Children</a>
+    <a href="parents.html">👨‍👩‍👧 Parents</a>
+    <a href="messages.html">💬 Messages</a>
+    <a href="mapping.html">📍 Mapping</a>
+
+    <a href="#" onclick="logout()" class="logout-btn">
+      🚪 Logout
+    </a>
+  </div>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <h1>Nutrition Assessment & Monitoring</h1>
+
+    <div class="grid">
+
+      <!-- FORM -->
+      <div class="card form-card">
+
+        <h3>Enter Child Data</h3>
+
+        <label>School</label>
+        <select id="schoolSelect" onchange="loadSchoolChildren()">
+          <option value="">Select School</option>
+        </select>
+
+
+        <label>Grade</label>
+        <input type="text" id="grade" readonly>
+
+
+        <label>Sex</label>
+        <input type="text" id="gender" readonly>
+
+
+        <label>Child</label>
+        <select id="childSelect" onchange="loadChildInfo()">
+          <option value="">Select Child</option>
+        </select>
+
+        <label>Age</label>
+        <input type="number" id="age" readonly>
+
+        <label>Height</label>
+        <input
+          type="number"
+          id="height"
+          placeholder="cm"
+        >
+        <label>Weight</label>
+        <input
+          type="number"
+          id="weight"
+          placeholder="kg"
+        >
+
+        <button
+          class="primary"
+          onclick="calculateBMI()"
+        >
+          Calculate
+        </button>
+
+        <button
+          class="secondary"
+          onclick="saveData()"
+        >
+          Save
+        </button>
+
+      </div>
+
+      <!-- RIGHT PANEL -->
+      <div class="right-panel">
+
+        <!-- PROFILE -->
+        <div class="card profile-card">
+
+          <h3>Child Profile</h3>
+
+          <p id="profileName">
+            No data yet
+          </p>
+
+          <p id="profileAge"></p>
+
+        </div>
+
+        <!-- RESULT -->
+        <div class="card result-card">
+
+          <h3>Result</h3>
+
+          <h1 id="bmiValue">--</h1>
+
+          <span
+            id="statusBadge"
+            class="badge"
+          >
+            Status
+          </span>
+
+          <p id="statusText"></p>
+
+        </div>
+
+        <!-- GROWTH CHART -->
+        <div class="card chart-card">
+
+          <h3>Growth Chart</h3>
+
+          <canvas id="growthChart"></canvas>
+
+        </div>
+
+        <!-- HISTORY -->
+        <div class="card history-card">
+
+          <h3>Assessment History</h3>
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Age</th>
+                <th>Height</th>
+                <th>Weight</th>
+                <th>BMI</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+
+            <tbody id="historyTable"></tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- MONITORING SECTION -->
+    <div class="card monitoring-card">
+
+      <h2>Monitoring Records</h2>
+
+      <div class="filters">
+
+        <input
+          type="text"
+          id="search"
+          placeholder="Search Student..."
+          onkeyup="filterTable()"
+        >
+
+      </div>
+
+      <div class="table-container">
+
+        <table id="studentTable">
+
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>School</th>
+              <th>Grade</th>
+              <th>Height</th>
+              <th>Weight</th>
+              <th>BMI</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody></tbody>
+
+        </table>
+
+        <p
+          id="emptyState"
+          style="
+            display:none;
+            text-align:center;
+            padding:20px;
+          "
+        >
+          No records found
+        </p>
+
+      </div>
+
+    </div>
+
+  </main>
+
+</div>
+
+<!-- TREND MODAL -->
+<div
+  id="trendModal"
+  class="edit-card"
+  style="display:none;"
+>
+
+  <div
+    class="card-content"
+    style="width:600px;"
+  >
+
+    <h3 id="trendTitle">
+      BMI Trend
+    </h3>
+
+    <canvas
+      id="trendChart"
+      height="200"
+    ></canvas>
+
+    <div class="card-buttons">
+
+      <button onclick="closeTrend()">
+        Close
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script src="js/assessment.js"></script>
+
+</body>
+</html>

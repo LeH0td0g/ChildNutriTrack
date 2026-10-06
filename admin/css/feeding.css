@@ -1,0 +1,377 @@
+/* ==========================
+   GLOBAL
+========================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  display: flex;
+  background: #f4f6f9;
+}
+
+/* ==========================
+   SIDEBAR
+========================== */
+
+.sidebar {
+  width: 220px;
+  height: 100vh;
+  background: #1b5e20;
+  color: white;
+  padding: 20px;
+  position: fixed;
+}
+
+.sidebar h2 {
+  margin-bottom: 10px;
+}
+
+.sidebar a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 6px;
+}
+
+.sidebar a.active,
+.sidebar a:hover {
+  background: #388e3c;
+}
+
+.logout-btn {
+  display: block;
+  margin-top: 20px;
+  padding: 10px;
+  background: #c62828;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  text-align: center;
+  transition: .3s;
+}
+
+.logout-btn:hover {
+  background: #b71c1c;
+}
+
+/* ==========================
+   MAIN
+========================== */
+
+.main {
+  margin-left: 220px;
+  width: 100%;
+  padding: 20px;
+}
+
+/* ==========================
+   TOPBAR
+========================== */
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.topbar h1 {
+  color: #000000;
+}
+
+/* ==========================
+   DASHBOARD CARDS
+========================== */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+}
+
+.card h3 {
+  color: #1b5e20;
+  margin-bottom: 10px;
+}
+
+.card span {
+  font-size: 28px;
+  font-weight: bold;
+  color: #000000;
+}
+
+/* ==========================
+   PROGRESS CARD
+========================== */
+
+.progress-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 12px rgba(0,0,0,.1);
+}
+
+.progress-bar {
+  width: 100%;
+  height: 25px;
+  background: #ddd;
+  border-radius: 30px;
+  overflow: hidden;
+  margin-top: 15px;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: #2e7d32;
+  transition: .5s;
+}
+
+.progress-card p {
+  margin-top: 10px;
+  font-weight: 600;
+  color: #1b5e20;
+}
+
+/* ==========================
+   FORM SECTION
+========================== */
+
+.form-container {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 12px rgba(0,0,0,.1);
+}
+
+.form-container h2 {
+  margin-bottom: 15px;
+  color: #000000;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap: 15px;
+}
+
+.form-container input,
+.form-container select {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.form-container button {
+  margin-top: 15px;
+  padding: 12px 20px;
+  background: #2e7d32;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.form-container button:hover {
+  background: #1b5e20;
+}
+
+/* ==========================
+   SEARCH
+========================== */
+
+.filters {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 12px rgba(0,0,0,.1);
+}
+
+.filters input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+/* ==========================
+   TABLES
+========================== */
+
+.table-container {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 12px rgba(0,0,0,.1);
+  overflow-x: auto;
+}
+
+.table-container h2 {
+  margin-bottom: 15px;
+  color: #000000;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th {
+  background: #2e7d32;
+  color: white;
+  padding: 12px;
+}
+
+table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+
+table tr:hover {
+  background: #f8f9fa;
+}
+
+/* ==========================
+   STATUS BADGES
+========================== */
+
+.status-active {
+  background: #e8f5e9;
+  color: #2e7d32;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.status-completed {
+  background: #e3f2fd;
+  color: #1565c0;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.status-dropped {
+  background: #ffebee;
+  color: #c62828;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+/* ==========================
+   BUTTONS
+========================== */
+
+.edit-btn {
+  background: #1976d2;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.delete-btn {
+  background: #c62828;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.edit-btn:hover {
+  background: #1565c0;
+}
+
+.delete-btn:hover {
+  background: #b71c1c;
+}
+
+/* ==========================
+   MODAL
+========================== */
+
+.edit-card {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.4);
+  justify-content: center;
+  align-items: center;
+}
+
+.card-content {
+  background: white;
+  width: 400px;
+  max-width: 95%;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.card-content input,
+.card-content select {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.card-content button {
+  margin-right: 10px;
+  padding: 10px 15px;
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media (max-width:768px) {
+
+  .sidebar {
+    display: none;
+  }
+
+  .main {
+    margin-left: 0;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.school-row td{
+    background:#e8f5e9;
+    color:#1b5e20;
+    font-weight:700;
+    font-size:15px;
+    padding:12px;
+    border-top:2px solid #c8e6c9;
+}

@@ -1,0 +1,837 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  display: flex;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 220px;
+  height: 100vh;
+  background: #1b5e20;
+  color: white;
+  padding: 20px;
+  position: fixed;
+}
+
+.sidebar a {
+  display: block;
+  color: white;
+  padding: 10px;
+  margin: 10px 0;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.sidebar a.active,
+.sidebar a:hover {
+  background: #388e3c;
+}
+
+.logout-btn {
+  display: block;
+  margin-top: 20px;
+  padding: 10px;
+  background: #c62828;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.logout-btn:hover {
+  background: #b71c1c;
+}
+
+/* MAIN */
+.main {
+  margin-left: 220px;
+  width: 100%;
+  padding: 20px;
+}
+
+/* MAP */
+#map {
+  height: 700px;
+  width: 78%;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+/* =========================
+   SUMMARY CARDS (UPGRADED)
+========================= */
+.summary-cards{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+/* base card */
+.summary-card{
+    position: relative;
+    background: rgba(255,255,255,.96);
+    backdrop-filter: blur(10px);
+
+    border-radius: 18px;
+    padding: 18px 18px 20px;
+
+    box-shadow: 0 12px 35px rgba(0,0,0,.10);
+    border: 1px solid rgba(255,255,255,.6);
+
+    overflow: hidden;
+    transition: .3s ease;
+}
+
+/* hover lift */
+.summary-card:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 18px 45px rgba(0,0,0,.14);
+}
+
+/* subtle background accent glow */
+.summary-card::before{
+    content: "";
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 120px;
+    height: 120px;
+    background: rgba(27, 94, 32, 0.08);
+    border-radius: 50%;
+}
+
+/* label */
+.summary-card h4{
+    font-size: 13px;
+    color: #64748b;
+    font-weight: 600;
+    letter-spacing: .3px;
+    margin-bottom: 10px;
+}
+
+/* number */
+.summary-card p{
+    font-size: 30px;
+    font-weight: 800;
+    color: #1b5e20;
+    letter-spacing: .5px;
+}
+
+/* icon-style accent bar */
+.summary-card::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 15%;
+    height: 70%;
+    width: 5px;
+    background: #1b5e20;
+    border-radius: 10px;
+    opacity: .6;
+}
+
+/* danger card (high risk schools) */
+.summary-card.danger::after{
+    background: #e53935;
+}
+
+.summary-card.danger p{
+    color: #e53935;
+}
+
+/* optional subtle glow for danger */
+.summary-card.danger::before{
+    background: rgba(229, 57, 53, 0.08);
+}
+
+/* =========================
+   FILTER
+========================= */
+
+.filter-box{
+    margin-top:15px;
+    padding:18px;
+    border-radius:18px;
+    background:rgba(255,255,255,.96);
+    backdrop-filter:blur(10px);
+    box-shadow:0 12px 35px rgba(0,0,0,.10);
+
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+    align-items:end;
+}
+
+.filter-item{
+    display:flex;
+    flex-direction:column;
+    min-width:170px;
+}
+
+.filter-item label{
+    font-size:13px;
+    margin-bottom:6px;
+    color:#64748b;
+    font-weight:600;
+}
+
+.filter-item select{
+    padding:10px;
+    border-radius:10px;
+    border:1px solid #ddd;
+    outline:none;
+}
+
+#clearFilters{
+    padding:10px 18px;
+    border:none;
+    border-radius:10px;
+    background:#c62828;
+    color:white;
+    cursor:pointer;
+}
+
+/* LEGEND */
+.legend {
+  margin-top: 20px;
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  width: 200px;
+  box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+}
+
+.dot {
+  height: 12px;
+  width: 12px;
+  display: inline-block;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.under {
+  background: red;
+}
+
+.normal {
+  background: green;
+}
+
+.over {
+  background: orange;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+
+  .main {
+    margin-left: 0;
+  }
+}
+
+.legend{
+    position:absolute;
+    top:300px;
+    right:20px;
+    width:340px;
+    height: 700px;
+    z-index:1000;
+    background:rgba(255,255,255,.96);
+    backdrop-filter:blur(10px);
+    border-radius:18px;
+    padding:22px;
+    box-shadow:0 12px 35px rgba(0,0,0,.12);
+}
+
+.legend h3{
+    font-size:22px;
+    color:#1b5e20;
+    margin-bottom:18px;
+    border-bottom:2px solid #edf2f7;
+    padding-bottom:10px;
+}
+
+.legend-section{
+    margin-bottom:14px;
+}
+
+.legend-section h4{
+    font-size:15px;
+    margin-bottom:10px;
+    color:#222;
+}
+
+.legend p{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:8px 0;
+    font-size:14px;
+    color:#444;
+}
+
+.legend-divider{
+    height:1px;
+    background:#e2e8f0;
+    margin:14px 0;
+}
+
+.dot{
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    display:inline-block;
+    flex-shrink:0;
+}
+
+.dot.normal{ background:#22c55e; }
+.dot.under{ background:#ef4444; }
+.dot.over{ background:#f59e0b; }
+
+.dot.low{ background:#22c55e; }
+.dot.medium{ background:#f59e0b; }
+.dot.high{ background:#ef4444; }
+
+.risk-bar{
+    width:100%;
+    height:14px;
+    border-radius:20px;
+    margin-bottom:6px;
+    background:linear-gradient(
+      to right,
+      #22c55e,
+      #84cc16,
+      #facc15,
+      #fb923c,
+      #ef4444
+    );
+}
+
+/* =========================
+   POPUP LINE BAR
+========================= */
+.popup-bar{
+    width: 100%;
+    height: 10px;
+    display: flex;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #e2e8f0;
+    margin: 8px 0 10px;
+}
+
+/* segments */
+.popup-seg{
+    height: 100%;
+    transition: width .4s ease;
+}
+
+/* colors */
+.popup-seg.under{
+    background: #ef4444;
+}
+
+.popup-seg.normal{
+    background: #22c55e;
+}
+
+.popup-seg.over{
+    background: #f59e0b;
+}
+
+/* label spacing */
+.popup-labels{
+    font-size: 12px;
+    color: #444;
+    line-height: 1.4;
+}
+
+/* =========================
+   RISK RANKING
+========================= */
+.ranking-box{
+    width: 100%;
+    margin-top: 25px;
+
+    background: rgba(255,255,255,.96);
+    backdrop-filter: blur(10px);
+    border-radius: 18px;
+    padding: 24px;
+
+    box-shadow: 0 12px 35px rgba(0,0,0,.12);
+    border: 1px solid rgba(255,255,255,.6);
+
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.ranking-box h3{
+    font-size: 22px;
+    font-weight: 700;
+    color: #1b5e20;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #edf2f7;
+    padding-bottom: 12px;
+}
+
+/* scrollbar */
+.ranking-box::-webkit-scrollbar{
+    width: 8px;
+}
+
+.ranking-box::-webkit-scrollbar-thumb{
+    background: #cbd5e1;
+    border-radius: 20px;
+}
+
+.ranking-box::-webkit-scrollbar-thumb:hover{
+    background: #94a3b8;
+}
+
+.bottom-section{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+    margin-top: 25px;
+    align-items: start;
+}
+
+/* =========================
+   EACH SCHOOL CARD
+========================= */
+.rank-item{
+    background: white;
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 14px;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,.06);
+    border-left: 6px solid #ddd;
+
+    transition: .25s ease;
+}
+
+.rank-item:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 10px 22px rgba(0,0,0,.12);
+}
+
+/* Top 3 */
+.rank-item.top1{
+    border-left: 6px solid #e53935;
+    background: linear-gradient(to right, #fff5f5, white);
+}
+
+.rank-item.top2{
+    border-left: 6px solid #fb8c00;
+    background: linear-gradient(to right, #fff8ef, white);
+}
+
+.rank-item.top3{
+    border-left: 6px solid #43a047;
+    background: linear-gradient(to right, #f4fff6, white);
+}
+
+/* header row */
+.rank-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* number badge */
+.rank-number{
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #1b5e20;
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* school name */
+.rank-school{
+    flex: 1;
+    margin-left: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #222;
+}
+
+/* percent pill */
+.rank-percent{
+    background: #f1f5f9;
+    color: #111;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* stats */
+.rank-rate{
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 10px;
+}
+
+/* progress bar */
+.rank-bar{
+    width: 100%;
+    height: 10px;
+    background: #e2e8f0;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.rank-fill{
+    height: 100%;
+    border-radius: 30px;
+    transition: width .5s ease;
+}
+
+/* =========================
+   STUDENT CARD OVERLAY
+========================= */
+.student-card-container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0,0,0,.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 2000;
+}
+
+.student-card{
+    width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+
+    box-shadow: 0 20px 50px rgba(0,0,0,.3);
+}
+
+.student-card h2{
+    margin-bottom: 10px;
+    color: #1b5e20;
+}
+
+.student-group{
+    margin-top: 15px;
+}
+
+.student-item{
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+
+.student-status{
+    font-weight: bold;
+}
+
+.trend-box{
+    margin-top:25px;
+    background:white;
+    border-radius:18px;
+    padding:24px;
+    box-shadow:0 12px 35px rgba(0,0,0,.12);
+}
+
+.trend-box h3{
+    color:#1b5e20;
+    margin-bottom:20px;
+    font-size:22px;
+}
+
+.trend-top{
+    display:flex;
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.trend-top select{
+    padding:10px 14px;
+    border-radius:10px;
+    border:1px solid #ddd;
+}
+
+#trendChart{
+    height:320px !important;
+}
+
+
+.dot.low { background: green; }
+.dot.medium { background: orange; }
+.dot.high { background: red; }
+
+/* =====================================================
+   HISTORY TABLE
+===================================================== */
+
+.history-card table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:14px;
+}
+
+.history-card thead{
+    position:sticky;
+    top:0;
+    z-index:5;
+}
+
+.history-card th{
+    background:#2e7d32;
+    color:#fff;
+    padding:14px 16px;
+    text-align:center;
+    font-weight:600;
+    white-space:nowrap;
+}
+
+.history-card td{
+    padding:14px 16px;
+    text-align:center;
+    color:#444;
+    border-bottom:1px solid #ececec;
+}
+
+.history-card tbody tr{
+    transition:.25s;
+}
+
+.history-card tbody tr:nth-child(even){
+    background:#fafafa;
+}
+
+.history-card tbody tr:hover{
+    background:#e8f5e9;
+}
+
+/* =====================================================
+   FORM IMPROVEMENTS
+===================================================== */
+
+.form-card input,
+.form-card select{
+    margin-bottom:2px;
+}
+
+.form-card label{
+    margin-top:16px;
+}
+
+.form-card input::placeholder{
+    color:#999;
+}
+
+.form-card input:hover,
+.form-card select:hover{
+    border-color:#43a047;
+}
+
+/* =====================================================
+   BUTTON GROUP
+===================================================== */
+
+.form-buttons{
+    display:flex;
+    gap:12px;
+    margin-top:20px;
+}
+
+.form-buttons button{
+    flex:1;
+    margin-top:0;
+}
+
+.primary,
+.secondary{
+    transition:.25s;
+}
+
+.primary:hover,
+.secondary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(0,0,0,.15);
+}
+
+.primary:active,
+.secondary:active{
+    transform:scale(.98);
+}
+
+/* =====================================================
+   CARD ANIMATION
+===================================================== */
+
+.card{
+    transition:.25s;
+}
+
+.card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 14px 32px rgba(0,0,0,.12);
+}
+
+/* =====================================================
+   SECTION DIVIDER
+===================================================== */
+
+.card h3{
+    position:relative;
+    padding-bottom:12px;
+}
+
+.card h3::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:55px;
+    height:4px;
+    border-radius:5px;
+    background:#2e7d32;
+}
+
+/* =====================================================
+   PROFILE DETAILS
+===================================================== */
+
+.profile-details{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.profile-details h2{
+    font-size:24px;
+    color:#222;
+}
+
+.profile-details p{
+    color:#666;
+    font-size:14px;
+}
+
+/* =====================================================
+   BMI RESULT
+===================================================== */
+
+#bmiValue{
+    font-size:60px;
+    font-weight:700;
+    color:#1b5e20;
+    line-height:1;
+}
+
+#statusBadge{
+    margin-top:15px;
+}
+
+#statusText{
+    font-size:15px;
+    margin-top:18px;
+    color:#666;
+}
+
+/* =====================================================
+   CHART
+===================================================== */
+
+.chart-card{
+    display:flex;
+    flex-direction:column;
+}
+
+.chart-card canvas{
+    margin-top:15px;
+    border-radius:10px;
+}
+
+/* =====================================================
+   INPUT GROUP SPACING
+===================================================== */
+
+.form-card label:first-child{
+    margin-top:0;
+}
+
+/* =====================================================
+   READONLY INPUTS
+===================================================== */
+
+input[readonly]{
+    cursor:not-allowed;
+}
+
+/* =====================================================
+   SCROLLBAR
+===================================================== */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#f1f1f1;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#bdbdbd;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#9e9e9e;
+}
+
+/* =====================================================
+   PAGE FADE
+===================================================== */
+
+.main{
+    animation:fadeIn .4s ease;
+}
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+

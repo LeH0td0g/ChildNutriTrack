@@ -1,0 +1,238 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  display: flex;
+  background: #f4f6f9;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 220px;
+  height: 100vh;
+  background: #1b5e20;
+  color: white;
+  padding: 20px;
+  position: fixed;
+}
+
+.sidebar h2 {
+  margin-bottom: 10px;
+}
+
+.sidebar a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 6px;
+}
+
+.sidebar a.active,
+.sidebar a:hover {
+  background: #388e3c;
+}
+
+.logout-btn {
+  display: block;
+  margin-top: 20px;
+  padding: 10px;
+  background: #c62828;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.logout-btn:hover {
+  background: #b71c1c;
+}
+
+/* MAIN */
+.main {
+  margin-left: 220px;
+  width: 100%;
+  padding: 20px;
+}
+
+/* TOPBAR */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topbar button {
+  background: #2e7d32;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.alert-btn {
+  position: relative;
+  background: #2e7d32;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.badge {
+  position: absolute;
+  top: 5px;
+  right: 8px;
+  width: 10px;
+  height: 10px;
+  background: red;
+  border-radius: 50%;
+}
+
+.hidden {
+  display: none;
+}
+
+/* TOP SECTION */
+.top-section {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+/* STATS GRID */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+/* CARD */
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+}
+
+.card p {
+  font-size: 24px;
+  margin-top: 10px;
+}
+
+.danger {
+  color: red;
+}
+
+/* SCHEDULE */
+.schedule-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+}
+
+.schedule-list {
+  list-style: none;
+  margin-top: 10px;
+}
+
+.schedule-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+}
+
+.schedule-list .date {
+  font-size: 12px;
+  color: #2e7d32;
+  font-weight: bold;
+}
+
+/* SECTION TITLE */
+.section-title {
+  margin: 20px 0 10px;
+}
+
+/* FEATURES */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 10px;
+
+  position: relative;
+  z-index: 10;   /* FORCE ABOVE OTHER SECTIONS */
+}
+
+.feature-box {
+  background: #2e7d32;
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  cursor: pointer;
+
+  position: relative;
+  z-index: 11;   /* MAKE EACH BOX CLICKABLE ABOVE EVERYTHING */
+  pointer-events: auto;
+
+  transition: 0.3s;
+}
+
+.feature-box:hover {
+  background: #1b5e20;
+  transform: translateY(-5px);
+}
+
+/* MAP */
+.map-section {
+  margin-top: 30px;
+}
+
+#map {
+  height: 300px;
+  background: #ccc;
+  border-radius: 10px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+
+  .main {
+    margin-left: 0;
+  }
+
+  .top-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* PREVENT ANY SECTION OVERLAP */
+.top-section,
+.features,
+.schedule-card {
+  position: relative;
+  z-index: 1;
+}
+
+/* IMPORTANT: stop accidental click blocking */
+.schedule-card {
+  pointer-events: auto;
+}
+
+.main * {
+  pointer-events: auto;
+}

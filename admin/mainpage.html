@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Child Nutrition System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/mainpagestyle.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <h2>Child NutriTrack</h2>
+  <a class="active">🏠 Dashboard</a>
+  <a href="feeding.html">🍽️ Feeding Program</a>
+  <a href="assessment.html">🧾 Assessment</a>
+  <a href="scheduling.html">📅 Scheduling</a>
+  <a href="children.html">👶 Children</a>
+  <a href="parents.html">👨‍👩‍👧 Parents</a>
+  <a href="messages.html">💬 Messages</a>
+  <a href="mapping.html">📍 Mapping</a>
+  <a href="#" onclick="logout()" class="logout-btn">🚪 Logout</a>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <h1>Dashboard</h1>
+    <button onclick="showAlert()" class="alert-btn">
+      🔔 Alerts
+      <span id="alertBadge" class="badge hidden"></span>
+    </button>
+  </div>
+
+  <!-- TOP SECTION -->
+  <div class="top-section">
+
+    <!-- STATS -->
+    <div class="stats-grid">
+
+      <div class="card">
+        <h3>Total Children</h3>
+        <p>N/A</p>
+      </div>
+
+      <div class="card">
+        <h3>⚠ At Risk</h3>
+        <p class="danger">N/A</p>
+      </div>
+
+      <div class="card">
+        <h3>Schools Covered</h3>
+        <p>N/A</p>
+      </div>
+
+      <div class="card">
+        <h3>SMS Sent</h3>
+        <p>N/A</p>
+      </div>
+
+    </div>
+
+    <!-- SCHEDULES -->
+    <div class="schedule-card">
+      <h3>Upcoming Schedules</h3>
+
+      <ul class="schedule-list">
+        <li>
+          <span class="date">Apr 16</span>
+          <span>Feeding Program - Purok 4</span>
+        </li>
+
+        <li>
+          <span class="date">Apr 18</span>
+          <span>Checkup - Roosevelt</span>
+        </li>
+
+        <li>
+          <span class="date">Apr 21</span>
+          <span>Weighing Day - School Visit</span>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- FEATURES -->
+  <h2 class="section-title">Quick Actions</h2>
+
+  <div class="features">
+
+    <div class="feature-box">Feeding Process</div>
+    <div class="feature-box">Assessment</div>
+    <div class="feature-box">Scheduling</div>
+    <div class="feature-box">Alerts</div>
+    <div class="feature-box">Direct Message</div>
+    <div class="feature-box">SMS Notification</div>
+
+  </div>
+
+  <!-- MAP -->
+  <div class="map-section">
+    <h2>Barangay 2D Mapping</h2>
+    <div id="map"></div>
+  </div>
+
+</div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="js/mainpage.js"></script>
+
+</body>
+</html>

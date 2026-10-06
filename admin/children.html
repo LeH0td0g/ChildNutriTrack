@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Children - Child Nutrition System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/children.css">
+</head>
+
+<body>
+
+<div class="sidebar">
+  <h2>Child NutriTrack</h2>
+  <a href="mainpage.html">🏠 Dashboard</a>
+  <a href="feeding.html">🍽️ Feeding Program</a>
+  <a href="assessment.html">🧾 Assessment</a>
+  <a href="scheduling.html">📅 Scheduling</a>
+  <a class="active">👶 Children</a>
+  <a href="parents.html">👨‍👩‍👧 Parents</a>
+  <a href="messages.html">💬 Messages</a>
+  <a href="mapping.html">📍 Mapping</a>
+  <a href="#" onclick="logout()" class="logout-btn">🚪 Logout</a>
+</div>
+
+<div class="main">
+
+  <div class="topbar">
+    <h1>Children Records</h1>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="card">Total: <span id="totalChildren">0</span></div>
+    <div class="card">Day Care: <span id="daycareCount">0</span></div>
+    <div class="card">Grade 1: <span id="g1Count">0</span></div>
+    <div class="card">Grade 2: <span id="g2Count">0</span></div>
+    <div class="card">Grade 3: <span id="g3Count">0</span></div>
+    <div class="card">Grade 4: <span id="g4Count">0</span></div>
+  </div>
+
+  <div class="stats-section">
+    <h3>Sex Distribution</h3>
+    <div class="stats gender-stats">
+      <div class="card">Male: <span id="maleCount">0</span></div>
+      <div class="card">Female: <span id="femaleCount">0</span></div>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <div class="form-container">
+    <h2>Add Child</h2>
+    <label>First Name</label>
+    <input type="text" id="firstName">
+    <label>Middle Name</label>
+    <input type="text" id="middleName">
+    <label>Last Name</label>
+    <input type="text" id="lastName" >
+    <label>Age</label>
+    <input type="number" id="age">
+    <label>Address</label>
+    <input type="text" id="address" placeholder="Street, Barangay, Municipality">
+    <label>Sex</label>
+    <select id="gender">
+      <option value="">Select Sex</option>
+      <option>Male</option>
+      <option>Female</option>
+    </select>
+    <label>Grade</label>
+    <select id="grade">
+      <option value="">Select Grade</option>
+      <option>Grade 1</option>
+      <option>Grade 2</option>
+      <option>Grade 3</option>
+      <option>Grade 4</option>
+    </select>
+    <label>School</label>
+    <select id="barangay">
+      <option value="">Select School</option>
+      <option>Bangkal Elementary School</option>
+      <option>Bayan-Bayanan Elementary School</option>
+      <option>Colo Elementary School</option>
+      <option>Dalao Elementary School</option>
+      <option>Dinalupihan Elementary School</option>
+      <option>Happy Valley Elementary School</option>
+      <option>Kataasan Elementary School</option>
+      <option>Layac Elementary School</option>
+      <option>Luakan Elementary School</option>
+      <option>Magsaysay Elementary School</option>
+      <option>Maligaya Elementary School</option>
+      <option>Naparing Elementary School</option>
+      <option>New San Jose Elementary School</option>
+      <option>Old San Jose Elementary School</option>
+      <option>Pag-asa Elementary School</option>
+      <option>Paggalanggang Elementary School</option>
+      <option>Payangan Elementary School</option>
+      <option>Payumo Elementary School</option>
+      <option>Pinulot Elementary School</option>
+      <option>Pita Elementary School</option>
+      <option>Roosevelt Elementary School</option>
+      <option>Saguing Elementary School</option>
+      <option>San Benito Elementary School</option>
+      <option>San Pablo Elementary School</option>
+      <option>San Ramon Elementary School</option>
+      <option>Santo Niño Elementary School</option>
+      <option>Sta. Isabel Elementary School</option>
+      <option>Tucop Elementary School</option>
+      <option>Tubo-Tubo Elementary School</option>
+    </select>
+
+    <!-- PARENT SEARCH -->
+    <h3>Parent / Guardian</h3>
+    <label>Parent/Guardian</label>
+    <input
+      type="text"
+      id="parentSearch"
+      placeholder="Search registered parent..."
+      onkeyup="searchParents()"
+    >
+
+    <div id="parentResults" class="parent-results"></div>
+
+    <input type="hidden" id="selectedParentId">
+
+    <button onclick="addChild()">Add Child</button>
+  </div>
+
+  <!-- FILTER -->
+  <div class="filters">
+    <input type="text" id="search" placeholder="🔎 Search..." onkeyup="filterTable()">
+
+    <select id="filterGrade" onchange="filterTable()">
+      <option value="">All Grades</option>
+      <option>Grade 1</option>
+      <option>Grade 2</option>
+      <option>Grade 3</option>
+      <option>Grade 4</option>
+    </select>
+
+    <select id="filterBarangay" onchange="filterTable()">
+      <option value="">All School</option>
+      <option>Bangkal Elementary School</option>
+      <option>Bayan-Bayanan Elementary School</option>
+      <option>Colo Elementary School</option>
+      <option>Dalao Elementary School</option>
+      <option>Dinalupihan Elementary School</option>
+      <option>Happy Valley Elementary School</option>
+      <option>Kataasan Elementary School</option>
+      <option>Layac Elementary School</option>
+      <option>Luakan Elementary School</option>
+      <option>Magsaysay Elementary School</option>
+      <option>Maligaya Elementary School</option>
+      <option>Naparing Elementary School</option>
+      <option>New San Jose Elementary School</option>
+      <option>Old San Jose Elementary School</option>
+      <option>Pag-asa Elementary School</option>
+      <option>Paggalanggang Elementary School</option>
+      <option>Payangan Elementary School</option>
+      <option>Payumo Elementary School</option>
+      <option>Pinulot Elementary School</option>
+      <option>Pita Elementary School</option>
+      <option>Roosevelt Elementary School</option>
+      <option>Saguing Elementary School</option>
+      <option>San Benito Elementary School</option>
+      <option>San Pablo Elementary School</option>
+      <option>San Ramon Elementary School</option>
+      <option>Santo Niño Elementary School</option>
+      <option>Sta. Isabel Elementary School</option>
+      <option>Tucop Elementary School</option>
+      <option>Tubo-Tubo Elementary School</option>
+    </select>
+
+    <select id="filterGender" onchange="filterTable()">
+      <option value="">All Sex</option>
+      <option>Male</option>
+      <option>Female</option>
+    </select>
+  </div>
+
+  <!-- TABLE -->
+  <div class="table-container">
+    <h2>Child List</h2>
+
+    <table id="childTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Grade</th>
+          <th>Barangay</th>
+          <th>Sex</th>
+          <th>Address</th>
+          <th>Parent/Guardian</th>
+          <th>Contact</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <p id="emptyState" style="display:none;">No children found</p>
+  </div>
+
+</div>
+
+<!-- EDIT -->
+<div id="editCard" class="edit-card">
+  <div class="card-content">
+    <h3>Edit Child</h3>
+
+    <input type="text" id="editFirstName">
+    <input type="text" id="editMiddleName">
+    <input type="text" id="editLastName">
+    <input type="number" id="editAge">
+    <input type="text" id="editAddress" placeholder="Address (Street, Barangay, Municipality)">
+
+    <select id="editGender">
+      <option>Male</option>
+      <option>Female</option>
+    </select>
+
+    <select id="editGrade">
+      <option>Grade 1</option>
+      <option>Grade 2</option>
+      <option>Grade 3</option>
+      <option>Grade 4</option>
+    </select>
+
+    <select id="editBarangay">
+      <option>Bangkal Elementary School</option>
+      <option>Bayan-Bayanan Elementary School</option>
+      <option>Colo Elementary School</option>
+      <option>Dalao Elementary School</option>
+      <option>Dinalupihan Elementary School</option>
+      <option>Happy Valley Elementary School</option>
+      <option>Kataasan Elementary School</option>
+      <option>Layac Elementary School</option>
+      <option>Luakan Elementary School</option>
+      <option>Magsaysay Elementary School</option>
+      <option>Maligaya Elementary School</option>
+      <option>Naparing Elementary School</option>
+      <option>New San Jose Elementary School</option>
+      <option>Old San Jose Elementary School</option>
+      <option>Pag-asa Elementary School</option>
+      <option>Paggalanggang Elementary School</option>
+      <option>Payangan Elementary School</option>
+      <option>Payumo Elementary School</option>
+      <option>Pinulot Elementary School</option>
+      <option>Pita Elementary School</option>
+      <option>Roosevelt Elementary School</option>
+      <option>Saguing Elementary School</option>
+      <option>San Benito Elementary School</option>
+      <option>San Pablo Elementary School</option>
+      <option>San Ramon Elementary School</option>
+      <option>Santo Niño Elementary School</option>
+      <option>Sta. Isabel Elementary School</option>
+      <option>Tucop Elementary School</option>
+      <option>Tubo-Tubo Elementary School</option>
+    </select>
+
+    <button onclick="updateChild()">Save</button>
+    <button onclick="closeEdit()">Cancel</button>
+  </div>
+</div>
+
+<script src="js/children.js"></script>
+</body>
+</html>

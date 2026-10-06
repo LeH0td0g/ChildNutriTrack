@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Messages - Child Nutrition System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/messages.css">
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <h2>Child NutriTrack</h2>
+  <a href="mainpage.html">🏠 Dashboard</a>
+  <a href="feeding.html">🍽️ Feeding Program</a>
+  <a href="assessment.html">🧾 Assessment</a>
+  <a href="scheduling.html">📅 Scheduling</a>
+  <a href="children.html">👶 Children</a>
+  <a href="parents.html">👨‍👩‍👧 Parents</a>
+  <a class="active">💬 Messages</a>
+  <a href="mapping.html">📍 Mapping</a>
+  <a href="#" onclick="logout()" class="logout-btn">🚪 Logout</a>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <div class="topbar">
+    <h1>Messages</h1>
+  </div>
+
+  <div class="chat-container">
+
+    <!-- CONTACT LIST -->
+    <div class="contacts">
+      <h3>Contacts</h3>
+      <ul id="contactList">
+        <li onclick="selectContact('Maria Santos')">Maria Santos</li>
+        <li onclick="selectContact('Juan Dela Cruz')">Juan Dela Cruz</li>
+        <li onclick="selectContact('Pedro Reyes')">Pedro Reyes</li>
+      </ul>
+    </div>
+
+    <!-- CHAT BOX -->
+    <div class="chat-box">
+      <h3 id="chatTitle">Select a contact</h3>
+
+      <div id="messagesArea" class="messages-area">
+        <!-- Messages appear here -->
+      </div>
+
+      <div class="input-area">
+        <input type="text" id="messageInput" placeholder="Type message...">
+        <button onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script src="messages.js"></script>
+</body>
+</html>

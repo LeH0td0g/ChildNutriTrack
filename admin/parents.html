@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Parents - Child Nutrition System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/children.css">
+</head>
+
+<body>
+
+<div class="sidebar">
+  <h2>Child NutriTrack</h2>
+
+  <a href="mainpage.html">🏠 Dashboard</a>
+  <a href="feeding.html">🍽️ Feeding Program</a>
+  <a href="assessment.html">🧾 Assessment</a>
+  <a href="scheduling.html">📅 Scheduling</a>
+  <a href="children.html">👶 Children</a>
+  <a class="active">👨‍👩‍👧 Parents</a>
+  <a href="messages.html">💬 Messages</a>
+  <a href="mapping.html">📍 Mapping</a>
+
+  <a href="#" onclick="logout()" class="logout-btn">🚪 Logout</a>
+</div>
+
+<div class="main">
+
+  <div class="topbar">
+    <h1>Parent Records</h1>
+  </div>
+
+  <div class="form-container">
+    <h2>Add Parent / Guardian</h2>
+    <label>Parent/Guardian Full Name</label>
+    <input type="text" id="parentName">
+    <label>Phone Number</label>
+    <input type="text" id="parentPhone" >
+    <label>Email Address</label>
+    <input type="email" id="parentEmail" placeholder="name@email.com" >
+    <label>Password</label>
+    <input type="password" id="parentPassword" placeholder="****">
+
+    <button onclick="addParent()">Add Parent</button>
+  </div>
+
+  <div id="parentcontainer" class="table-container" >
+    <h2>Parent List</h2>
+
+    <table id="parentTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody></tbody>
+    </table>
+  </div>
+
+</div>
+
+
+<div id="editModal" class="edit-card">
+
+    <div class="card-content">
+
+        <h3>Edit Parent</h3>
+
+        <input type="text" id="editName" placeholder="Parent Name">
+
+        <input type="email" id="editEmail" placeholder="Email">
+
+        <input type="text" id="editPhone" placeholder="Phone">
+
+        <button onclick="saveParent()">
+            Save Changes
+        </button>
+
+        <button onclick="closeEdit()">
+            Cancel
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<script src="js/parents.js"></script>
+</body>
+</html>

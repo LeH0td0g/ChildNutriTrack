@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feeding Program - Child Nutrition System</title>
+    <link rel="stylesheet" href="css/feeding.css">
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <h2>Child NutriTrack</h2>
+
+    <a href="mainpage.html">🏠 Dashboard</a>
+    <a class="active" href="feeding.html">🍽️ Feeding Program</a>
+    <a href="assessment.html">🧾 Assessment</a>
+    <a href="scheduling.html">📅 Scheduling</a>
+    <a href="children.html">👶 Children</a>
+    <a href="parents.html">👨‍👩‍👧 Parents</a>
+    <a href="messages.html">💬 Messages</a>
+    <a href="mapping.html">📍 Mapping</a>
+
+    <a href="#" onclick="logout()" class="logout-btn">🚪 Logout</a>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+        <h1>Feeding Program Management</h1>
+    </div>
+
+    <!-- STATISTICS -->
+    <div class="stats">
+
+        <div class="card">
+            Total Participants
+            <span id="totalEnrolled">0</span>
+        </div>
+
+        <div class="card">
+            Active Participants
+            <span id="activeParticipants">0</span>
+        </div>
+
+        <div class="card">
+            Completed Program
+            <span id="completedParticipants">0</span>
+        </div>
+
+        <div class="card">
+            Meals Served
+            <span id="mealsServed">0</span>
+        </div>
+
+    </div>
+
+   <!-- SCHOOL SUMMARY -->
+    <div class="table-container">
+
+    <h2>School Participation Summary</h2>
+
+    <table id="schoolSummaryTable">
+        <thead>
+            <tr>
+                <th>School</th>
+                <th>Total Participants</th>
+                <th>Active</th>
+                <th>Completed</th>
+                <th>Dropped</th>
+            </tr>
+        </thead>
+
+        <tbody></tbody>
+    </table>
+
+</div>
+
+    <!-- PROGRESS CARD -->
+    <div class="form-container">
+        <h2>Program Progress</h2>
+
+        <div class="progress-wrapper">
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <p id="progressText">
+                0% Program Completion
+            </p>
+
+        </div>
+    </div>
+
+    <!-- ENROLLMENT FORM -->
+    <div class="form-container">
+
+        <h2>Enroll Child in Feeding Program</h2>
+
+        <div class="form-grid">
+
+            <div class="input-group">
+                <label for="childSelect">Child</label>
+                <select id="childSelect">
+                <option value="">Select Child</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="programStatus">Program Status</label>
+                <select id="programStatus">
+                    <option value="Active">Active</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Dropped">Dropped</option>
+                </select>
+            </div>
+
+        <div class="input-group">
+            <label for="startDate">Start Date</label>
+            <input
+                type="date"
+                id="startDate"
+            >
+        </div>
+
+        <div class="input-group">
+            <label for="startWeight">Starting Weight (kg)</label>
+            <input
+                type="number"
+                id="startWeight"
+            >
+        </div>
+
+    </div>
+
+        <button onclick="enrollChild()">
+            Enroll Child
+        </button>
+
+    </div>
+
+    <!-- ATTENDANCE FORM -->
+    <div class="form-container">
+
+        <h2>Meal Distribution</h2>
+
+        <div class="form-grid">
+
+            <input
+                type="date"
+                id="mealDate"
+            >
+
+            <input
+                type="text"
+                id="mealServed"
+                placeholder="Meal Served"
+            >
+
+            <input
+                type="number"
+                id="mealCount"
+                placeholder="Meals Count"
+            >
+
+        </div>
+
+        <button onclick="recordMeal()">
+            Record Meal Distribution
+        </button>
+
+    </div>
+
+    <!-- SEARCH -->
+    <div class="filters">
+
+        <input
+            type="text"
+            id="searchProgram"
+            placeholder="🔎 Search child..."
+            onkeyup="filterProgram()"
+        >
+
+        <select id="filterSchool" onchange="filterProgram()">
+            <option value="">All Schools</option>
+        </select>
+
+    </div>
+
+    <!-- PARTICIPANTS TABLE -->
+    <div class="table-container">
+
+        <h2>Feeding Program Participants</h2>
+
+        <table id="feedingTable">
+
+            <thead>
+                <tr>
+                    <th>Child Name</th>
+                    <th>School</th>
+                    <th>Nutrition Status</th>
+                    <th>Priority</th>
+                    <th>Program Status</th>
+                    <th>Start Date</th>
+                    <th>Starting Weight</th>
+                    <th>Current Weight</th>
+                    <th>Weight Gain</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <!-- MEAL HISTORY -->
+    <div class="table-container" style="margin-top:20px;">
+
+        <h2>Meal Distribution Records</h2>
+
+        <table id="mealTable">
+
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Meal</th>
+                    <th>Quantity Served</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<!-- EDIT MODAL -->
+<div id="editCard" class="edit-card" style="display:none;">
+
+    <div class="card-content">
+
+        <h3>Update Participant</h3>
+
+        <input
+            type="number"
+            id="editWeight"
+            placeholder="Current Weight"
+        >
+
+        <select id="editStatus">
+
+            <option value="Active">Active</option>
+            <option value="Completed">Completed</option>
+            <option value="Dropped">Dropped</option>
+
+        </select>
+
+        <button onclick="updateParticipant()">
+            Save Changes
+        </button>
+
+        <button onclick="closeEdit()">
+            Cancel
+        </button>
+
+    </div>
+
+</div>
+
+<script src="js/feeding.js"></script>
+
+</body>
+</html>

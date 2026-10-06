@@ -1,0 +1,167 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  display: flex;
+  background: #f4f6f9;
+}
+
+/* SIDEBAR (UNCHANGED) */
+.sidebar {
+  width: 220px;
+  height: 100vh;
+  background: #1b5e20;
+  color: white;
+  padding: 20px;
+  position: fixed;
+}
+
+.sidebar a {
+  display: block;
+  color: white;
+  padding: 10px;
+  margin: 10px 0;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+  background: #388e3c;
+}
+
+.logout-btn {
+  margin-top: 20px;
+  background: #c62828;
+  text-align: center;
+}
+
+/* MAIN */
+.main {
+  margin-left: 220px;
+  width: 100%;
+  padding: 20px;
+}
+
+/* GRID FIX */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+/* CARDS */
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 12px rgba(0,0,0,0.08);
+  margin-bottom: 15px;
+}
+
+/* NOTIFICATION CARD (FIXED LOOK) */
+.notification-card {
+  border-left: 5px solid #2e7d32;
+}
+
+/* BUTTON */
+.notif-btn {
+  margin-top: 10px;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #f1f1f1;
+  color: #2e7d32;
+  font-weight: bold;
+  position: relative;
+}
+
+.notif-btn:hover {
+  background: #e7e7e7;
+}
+
+/* BADGE FIX */
+.badge {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  width: 10px;
+  height: 10px;
+  background: red;
+  border-radius: 50%;
+}
+
+/* HIDDEN */
+.hidden {
+  display: none;
+}
+
+/* SCHEDULE */
+#scheduleList {
+  list-style: none;
+  padding: 0;
+}
+
+#scheduleList li {
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+/* QUICK ACTIONS */
+.quick-actions button {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  border: none;
+  background: #2e7d32;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.quick-actions button:hover {
+  background: #1b5e20;
+}
+
+/* CHILD SWITCHER */
+.child-item {
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #f4f6f9;
+  transition: 0.2s;
+}
+
+.child-item:hover {
+  background: #e8f5e9;
+}
+
+.child-item.active {
+  background: #2e7d32;
+  color: white;
+}
+
+.child-name {
+  font-size: 14px;
+}
+
+.child-meta {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}

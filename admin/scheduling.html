@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scheduling - Child Nutrition System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/scheduling.css">
+</head>
+
+<body>
+
+<div class="sidebar">
+  <h2>Child NutriTrack</h2>
+  <a href="mainpage.html">🏠 Dashboard</a>
+  <a href="feeding.html">🍽️ Feeding Program</a>
+  <a href="assessment.html">🧾 Assessment</a>
+  <a class="active">📅 Scheduling</a>
+  <a href="children.html">👶 Children</a>
+  <a href="parents.html">👨‍👩‍👧 Parents</a>
+  <a href="messages.html">💬 Messages</a>
+  <a href="mapping.html">📍 Mapping</a>
+  <a href="#" onclick="logout()" class="logout-btn">🚪 Logout</a>
+</div>
+
+<div class="main">
+
+  <div class="topbar">
+    <h1>Scheduling Calendar</h1>
+  </div>
+
+  <!-- VIEW SWITCH -->
+  <div class="calendar-header">
+    <div>
+      <button onclick="setView('month')">Month</button>
+      <button onclick="setView('week')">Week</button>
+      <button onclick="setView('day')">Day</button>
+    </div>
+
+    <div>
+      <button onclick="prev()">◀</button>
+      <span id="monthYear"></span>
+      <button onclick="next()">▶</button>
+    </div>
+  </div>
+
+  <!-- CALENDAR -->
+  <div class="calendar" id="calendar"></div>
+
+</div>
+
+<!-- MODAL -->
+<div id="eventModal" class="edit-card">
+  <div class="card-content">
+    <h3>Add Event</h3>
+
+    <input type="text" id="eventTitle" placeholder="Event name">
+    <input type="date" id="eventDate">
+
+    <select id="eventGrade">
+      <option value="">Select Grade</option>
+      <option>Day Care</option>
+      <option>Grade 1</option>
+      <option>Grade 2</option>
+      <option>Grade 3</option>
+      <option>Grade 4</option>
+      <option>Grade 5</option>
+      <option>Grade 6</option>
+    </select>
+
+    <select id="eventBarangay">
+      <option value="">Select Barangay</option>
+      <option>Roosevelt</option>
+      <option>Layac</option>
+    </select>
+
+    <div class="card-buttons">
+      <button onclick="saveEvent()">Save</button>
+      <button onclick="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/scheduling.js"></script>
+</body>
+</html>
